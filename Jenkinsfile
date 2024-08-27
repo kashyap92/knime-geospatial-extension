@@ -13,11 +13,8 @@ try {
             checkout scm
         }
         stage('build python extension'){
-            sh '''
-                micromamba activate knime-ext-bundling
-                micromamba list                
-                build_python_extension.py --knime-version 5.3 pst updatesite
-            '''
+            // build_python_extension path\to\directoryof\myextension\ path\to\directoryof\output  
+            knimetools.buildPythonExtension(updateSiteProject = '', knimeVersion = '5.3', ExtensionPath = 'knime_extension', OutputPath = 'updatesite')
         }
     }
 } catch (ex) {
